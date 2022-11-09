@@ -10,14 +10,14 @@ from services.statistics import latest_transactions, current_user_balance
 def user_statistics():
     current_users = User.objects.filter(is_active=True, is_superuser=False)
 
-    for user in active_users:
-        amount_trans = count_transactions(user)
-        most_popular_category = find_the_most_popular_category(user)
+    for user in current_users:
+        latest_trans = latest_transactions(user)
+        balance = current_user_balance(user)
 
         send_mail(
             "Your daily statistics from expense assistant!",
-            f"Total transactions {amount_trans}\n."
-            f"Most popular category - {most_popular_category[0]} with amount {most_popular_category[1]}.",
+            f"Latest transactions {latest_trans}\n."
+            f"Current balance - {balance}.",
             EMAIL_HOST_USER,
             [user.email],
         )
