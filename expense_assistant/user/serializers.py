@@ -77,6 +77,6 @@ class UserDataSerializer(serializers.ModelSerializer):
             'username',
             'firstname',
             'lastname',
-            'balance',
+            'user_balance',
             'email',
         )
